@@ -28,6 +28,8 @@ gem 'spring',        group: :development
 
 gem 'puma'
 
+gem 'omniauth-github'
+
 # Front-end stuff
 gem 'twitter-bootstrap-rails'
 gem 'slim-rails'
