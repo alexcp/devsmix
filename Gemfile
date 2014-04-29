@@ -28,6 +28,10 @@ gem 'spring',        group: :development
 
 gem 'puma'
 
+# Front-end stuff
+gem 'twitter-bootstrap-rails'
+gem 'slim-rails'
+
 group :development do
   gem 'pry'
 end
