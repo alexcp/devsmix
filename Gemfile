@@ -30,10 +30,9 @@ gem 'puma'
 
 gem 'omniauth-github'
 
-gem 'dotenv-deployment'
+gem 'dotenv-rails'
 
 # Front-end stuff
-gem 'twitter-bootstrap-rails'
 gem 'slim-rails'
 
 group :development do
