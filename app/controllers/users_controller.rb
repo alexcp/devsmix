@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def get_user
     begin
-      @user = User.find(params[:id])
+      @user = User.find_by_nickname!(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to root_path
     end

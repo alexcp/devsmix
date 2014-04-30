@@ -1,2 +1,16 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
+.row
+  .col-md-4
+    = avatar @user, :large
+    h1 = @user.name
+    h2 = @user.nickname
+  .col-md-8
+    h2 
+      i.fa.fa-list-alt &nbsp;
+      | Playlists
+    | This user doesn't have any playlist
+    
+    hr
+    h2 
+      i.fa.fa-heart &nbsp;
+      | Favorites
+    | This user doesn't have any favorites

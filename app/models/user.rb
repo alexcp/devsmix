@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
       user.location = auth["extra"]["raw_info"]["location"]
     end
   end
+
+  def to_param
+    nickname
+  end
 end
