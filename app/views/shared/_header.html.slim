@@ -10,7 +10,9 @@
     .navbar-collapse.collapse
       ul.nav.navbar-nav.navbar-right
         li
-          /- if current_user
-          /  = current_user.name
-          /- else
-          = link_to "Login", login_path
+          - if current_user
+            = link_to "#" do
+              = avatar current_user, :tiny
+              = current_user.nickname
+          - else
+            = link_to "Login", login_path
