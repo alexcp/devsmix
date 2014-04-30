@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  resources :users, only: :show
+
   root to: "home#index"
 
+  # Omniauth
   get 'login', to: redirect("/auth/github"), as: :login
   get '/auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')

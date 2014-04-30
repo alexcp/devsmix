@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  validates :uid, :name, :nickname, :email, :avatar, :location, :links, presence: true
+
   def self.from_omniauth auth
     find_by_uid(auth["id"]) || create_from_omniauth(auth)
   end
