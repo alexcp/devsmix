@@ -19,4 +19,8 @@ html
     = render "shared/header"
 
     .container
+      - if notice
+        .alert.alert-success.alert-dismissable
+          button.close aria-hidden="true" data-dismiss="alert" type="button"  &times;
+          = notice 
       = yield
