@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :playlists, except: :index
+
   resources :users, only: :show
 
   root to: "home#index"

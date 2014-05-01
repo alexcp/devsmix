@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :playlists
   validates :uid, :name, :nickname, :email, :avatar, :location, :links, presence: true
 
   def self.from_omniauth auth

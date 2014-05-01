@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :get_user
 
   def show
+    @playlists = @user.playlists
   end
 
   private
