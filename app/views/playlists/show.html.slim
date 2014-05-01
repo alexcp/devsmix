@@ -1,15 +1,6 @@
-p#notice = notice
+h1 = @playlist.name
+= link_to @playlist.author.nickname, user_path(@playlist.author)
 
-p
-  strong Name:
-  = @playlist.name
-p
-  strong Cover:
-  = @playlist.cover
-p
-  strong Author:
-  = @playlist.author
+- if @playlist.cover
+  = image_tag @playlist.cover
 
-= link_to 'Edit', edit_playlist_path(@playlist)
-'|
-= link_to 'Back', playlists_path

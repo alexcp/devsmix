@@ -1,7 +1,11 @@
 class SessionsController < ApplicationController
+  @@lock = Mutex.new
+
   def create
-    user = User.from_omniauth(env["omniauth.auth"])
-    session[:user_id] = user.id
+    @@lock.synchronize do
+      user = User.from_omniauth(env["omniauth.auth"])
+      session[:user_id] = user.id
+    end
     redirect_to root_url, notice: "Signed in!"
   end
 

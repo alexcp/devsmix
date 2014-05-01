@@ -1,6 +1,6 @@
 class PlaylistsController < ApplicationController
   before_action :set_playlist, only: [:edit, :update, :destroy]
-  before_action :set_user, only: [:index]
+  before_action :ensure_user_is_logged_in, except: :show
 
 
   # GET /playlists/1
@@ -15,7 +15,7 @@ class PlaylistsController < ApplicationController
 
   # GET /playlists/new
   def new
-    @playlist = current_user.playlist.new
+    @playlist = current_user.playlists.new
   end
 
   # GET /playlists/1/edit
@@ -25,7 +25,7 @@ class PlaylistsController < ApplicationController
   # POST /playlists
   # POST /playlists.json
   def create
-    @playlist = current_user.playlist.new(playlist_params)
+    @playlist = current_user.playlists.new(playlist_params)
 
     respond_to do |format|
       if @playlist.save
@@ -65,14 +65,12 @@ class PlaylistsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_playlist
-    @playlist = current_user.playlist.find(params[:id])
+    @playlist = current_user.playlists.find(params[:id])
   end
 
-  def set_user
-    begin
-      @user = User.find_by_nickname!(params[:user_id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to root_path
+  def ensure_user_is_logged_in
+    unless current_user
+      redirect_to root_path, notice: "Please login with your github account"
     end
   end
 

@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   has_many :playlists
   validates :uid, :name, :nickname, :email, :avatar, :location, :links, presence: true
+  validates :uid, :nickname, uniqueness: true
 
   def self.from_omniauth auth
-    find_by_uid(auth["id"]) || create_from_omniauth(auth)
+    find_by_uid(auth["uid"]) || create_from_omniauth(auth)
   end
 
   def self.create_from_omniauth auth

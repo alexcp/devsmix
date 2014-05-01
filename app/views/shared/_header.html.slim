@@ -9,10 +9,15 @@
       a.navbar-brand href="/" devsmix
     .navbar-collapse.collapse
       ul.nav.navbar-nav.navbar-right
-        li
-          - if current_user
+        - if current_user
+          li 
+            = link_to  new_playlist_path do
+              i.fa.fa-plus &nbsp;
+              | New Playlist
+          li
             = link_to user_path(current_user) do
               = avatar current_user, :tiny
               = current_user.nickname
-          - else
+        - else
+          li
             = link_to "Login", login_path

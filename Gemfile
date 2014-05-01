@@ -35,6 +35,8 @@ gem 'dotenv-rails'
 # Front-end stuff
 gem 'slim-rails'
 
+gem 'simple_form', git: 'git://github.com/plataformatec/simple_form', branch: 'master'
+
 group :development do
   gem 'pry'
 end

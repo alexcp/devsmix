@@ -3,4 +3,6 @@ class Playlist < ActiveRecord::Base
   validates :user_id, :name, presence: true
   validates :name, uniqueness: true
   validates :name, length: {minimum: 3}
+
+  alias_method :author, :user
 end
