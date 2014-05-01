@@ -1,16 +1,26 @@
-- if @playlist.errors.any?
-  .alert.alert-danger
-    h2 = "#{pluralize(@playlist.errors.count, "error")} prohibited this playlist from being saved:"
-    ul
-      - @playlist.errors.full_messages.each do |message|
-        li = message
+= simple_nested_form_for(@playlist, html: {class: 'form-horizontal' }) do |f|
+  - if @playlist.errors.any?
+    .alert.alert-danger
+      h2 = "#{pluralize(@playlist.errors.count, "error")} prohibited this playlist from being saved:"
+      ul
+        - @playlist.errors.full_messages.each do |message|
+          li = message
 
-= simple_form_for(@playlist, html: {class: 'form-horizontal' }) do |f|
+  .row
+    .col-md-4
+      h1 New playlist
+    .col-md-3.col-md-offset-5
+      = f.submit "Save Playlist", class: "btn btn-success pull-right"
+      = link_to 'Cancel', root_path, class: "btn btn-danger pull-right"
+  .clearfix
+
   .row
     .col-md-4
       = f.input :name
       = f.input :cover
-
-  .row
-    = link_to 'Cancel', root_path, class: "btn btn-danger"
-    = f.submit "Save Playlist", class: "btn btn-success"
+    .col-md-7.col-md-offset-1
+      = f.simple_fields_for :songs do |song_form|
+        = song_form.input :title
+        = song_form.input :url
+        = song_form.link_to_remove icon_tag("fa fa-trash-o"), class: "btn btn-danger"
+      = f.link_to_add "Add a song", :songs, class: "btn btn-primary"

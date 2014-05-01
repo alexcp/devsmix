@@ -2,12 +2,11 @@ class PlaylistsController < ApplicationController
   before_action :set_playlist, only: [:edit, :update, :destroy]
   before_action :ensure_user_is_logged_in, except: :show
 
-
   # GET /playlists/1
   # GET /playlists/1.json
   def show
     begin
-      @playlist = Playlist.find(params[:id])
+      @playlist = Playlist.includes(:songs).find(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to root_path
     end
@@ -16,6 +15,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists/new
   def new
     @playlist = current_user.playlists.new
+    @playlist.songs.build
   end
 
   # GET /playlists/1/edit
@@ -76,6 +76,6 @@ class PlaylistsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def playlist_params
-    params.require(:playlist).permit(:name, :cover, :author)
+    params.require(:playlist).permit(:name, :cover, :author, songs_attributes: [:id, :title, :url, :_destroy])
   end
 end

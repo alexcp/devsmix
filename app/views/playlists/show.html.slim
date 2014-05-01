@@ -1,6 +1,15 @@
 h1 = @playlist.name
 = link_to @playlist.author.nickname, user_path(@playlist.author)
 
-- if @playlist.cover
-  = image_tag @playlist.cover
+hr
 
+.row
+  .col-md-8
+    - unless @playlist.cover.blank?
+      = image_tag @playlist.cover
+    - else
+      p No Cover
+  .col-md-4
+    .list-group
+      - @playlist.songs.each do |song|
+        = link_to song.title, "#", class: "list-group-item"

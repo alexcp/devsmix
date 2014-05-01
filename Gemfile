@@ -37,6 +37,8 @@ gem 'slim-rails'
 
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form', branch: 'master'
 
+gem 'nested_form'
+
 group :development do
   gem 'pry'
 end
