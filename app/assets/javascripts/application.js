@@ -13,4 +13,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery_nested_form
+//= require jquery-ui.min
+//= require swfobject
+//= require jquery.youtube.player.min
 //= require_tree .
