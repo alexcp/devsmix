@@ -1,3 +1,7 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).on "ready page:load", ->
+  $(".playlist_play_button").on "click", (e)->
+    e.preventDefault()
+    $.getJSON $(this).attr("href"), (data, status, jqXHR) ->
+      console.log(data)
+      new Player(data)
+
