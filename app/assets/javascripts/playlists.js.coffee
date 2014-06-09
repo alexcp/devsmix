@@ -1,8 +1,15 @@
 $(document).on "ready page:load", ->
   $(".playlist_play_button").on "click", (e)->
-    $(this).val("Loading..")
-    $(this).addClass("disabled")
-    $.getJSON $(this).attr("href"), (data, status, jqXHR) ->
+    $("#music_player").player("playVideo")
+    e.preventDefault()
+
+  loadVideo = ()->
+    $.getJSON window.location.pathname, (data, status, jqXHR) ->
       if status == "success"
         new Player(data)
-    e.preventDefault()
+
+  if window.location.pathname.match("playlists")
+    $("#music_player").show()
+    loadVideo()
+  else
+    $("#music_player").hide()

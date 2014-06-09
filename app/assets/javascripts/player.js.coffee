@@ -15,6 +15,8 @@ class @Player
     ,playlistBuilderClickHandler: (event)->
       event.preventDefault()
     ,playlist: @playlist,
+    toolbar: 'play,pause,prev,next,shuffle,repeat',
+    width: "100%",
     autoPlay: true,
     autoStart: true,
     height: 0,
