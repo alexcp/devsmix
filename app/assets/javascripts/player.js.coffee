@@ -4,7 +4,17 @@ class @Player
     @load()
 
   config: ()->
-    playlist: @playlist,
+    playlistBuilder: (videos)->
+      list = $("<ul class='list-group'></ul>")
+      for video in videos
+        $("<li class='list-group-item'>#{video.title}</li>")
+          .data('video', video)
+          .attr('title', video.title)
+          .appendTo(list)
+      return {container: $("#custom_playlist"), items: list.appendTo("#custom_playlist").find("li")}
+    ,playlistBuilderClickHandler: (event)->
+      event.preventDefault()
+    ,playlist: @playlist,
     autoPlay: true,
     autoStart: true,
     height: 0,
