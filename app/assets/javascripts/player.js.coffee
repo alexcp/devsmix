@@ -9,7 +9,8 @@ class @Player
     autoStart: true,
     height: 0,
     onReady: ()->
-      console.log("playlist has loaded")
+      $(".playlist_play_button").removeClass("disabled")
+      $(".playlist_play_button").val("Play")
     ,onError: ()->
       console.log(message)
 

@@ -5,7 +5,7 @@ hr
 
 .row
   .col-md-8
-    = link_to "Play", playlist_path(@playlist, format: :json), class: "btn btn-info playlist_play_button"
+    = button_to "Play", playlist_path(@playlist, format: :json), class: "btn btn-info playlist_play_button", data: {loading_text: "Loading..."}
     - unless @playlist.cover.blank?
       = image_tag @playlist.cover
     - else

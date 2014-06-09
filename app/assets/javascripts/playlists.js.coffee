@@ -1,7 +1,8 @@
 $(document).on "ready page:load", ->
   $(".playlist_play_button").on "click", (e)->
-    e.preventDefault()
+    $(this).val("Loading..")
+    $(this).addClass("disabled")
     $.getJSON $(this).attr("href"), (data, status, jqXHR) ->
-      console.log(data)
-      new Player(data)
-
+      if status == "success"
+        new Player(data)
+    e.preventDefault()
